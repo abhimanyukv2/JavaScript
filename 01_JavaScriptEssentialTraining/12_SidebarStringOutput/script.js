@@ -15,6 +15,11 @@ const everydayPack = new Backpack(
     "16 December 2022"
 );
 
+// Traditional String output
+const con = "<h1>hello</h1>";
+document.body.innerHTML = con;
+
+// Template Literals
 const content = `
 <main>
     <article>
