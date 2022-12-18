@@ -7,7 +7,7 @@ const greenPack = {
     pocketNum: 3,
 };
 
-const addPack = function(currentPack) {
+const addPack = (currentPack) => {
     const newArticle = document.createElement("article");
     newArticle.innerHTML = `
         <h1>${currentPack.name}</h1>
