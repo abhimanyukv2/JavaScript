@@ -2,6 +2,24 @@
 
 import backpackObjectArray from "./components/data.js";
 
+// Add event Listener to the lid-toggle button
+const lidToggle = function () {
+    // Find the current backpack object in backpackObjectArray
+    let backpackObject = backpackObjectArray.find(
+        ({id}) => id === this.parentElement.id
+    );
+
+    // Toggle lid open status
+    backpackObject.lidOpen == true ? backpackObject.lidOpen = false : backpackObject.lidOpen = true;
+
+    // Toggle button text
+    this.innerText == "Open Lid" ? this.innerText = "Closed Lid" : this.innerText = "Open Lid";
+
+    // set visible property status text
+    let status = this.parentElement.querySelector(".backpack__lid span");
+    status.innerText == "Closed" ? status.innerText = "Open" : status.innerText = "Closed"
+};
+
 // map throught the array and make a new array
 const content = backpackObjectArray.map((backpack) => {
     // 'backpack' now hold single backpack object
@@ -28,15 +46,15 @@ const content = backpackObjectArray.map((backpack) => {
         <li class="feature backpack__strap">Right strap length: <span>${backpack.strapLength.right}</span></li>
         <li class="feature backpack__lid">Lid Status: <span>${backpack.lidOpen ? 'Open' : 'Closed'}</span></li>
     </ul>
-    <button class="lid-toggle">Change Lid Status</button>
+    <button class="lid-toggle">Open lid</button>
     `;
 
     const button = backpackArticle.querySelector(".lid-toggle");
     const status = backpackArticle.querySelector('.backpack__lid span');
-    button.addEventListener("click", (event) => {
-        console.log(event)
-        status.innerText === "Open" ? status.innerText = "Closed" : status.innerText = "Open";
-    })
+    button.addEventListener("click", lidToggle)
+        // console.log(event)
+        // this.innerText === "Open lid" ? this.innerText = "Closed lid" : this.innerText = "Open lid"
+        // status.innerText === "Open" ? status.innerText = "Closed" : status.innerText = "Open";
 
     // return the backpaclArticle to the content array
     return backpackArticle;
