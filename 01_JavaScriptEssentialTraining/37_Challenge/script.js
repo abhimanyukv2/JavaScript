@@ -39,6 +39,21 @@ const newStrapLength = (strapArray) => {
         <button>Update</button>
         `;
 
+        // Add event listener
+        lengthForm.addEventListener("submit", (e) => {
+            // stop from reloading the page
+            e.preventDefault();
+
+            // Get the value from the input
+            let newValue = lengthForm.querySelector("input").value;
+
+            // set the value of the field
+            listElement.querySelector("span").innerHTML = `${newValue} inches`;
+            
+            // clear the form input
+            lengthForm.querySelector("input").value = "";
+        });
+
         //Add form to end of list element
         listElement.append(lengthForm); 
     });
@@ -66,8 +81,8 @@ const content = backpackObjectArray.map((backpack) => {
         <li class="feature backpack__color">Color: <span>${backpack.color}</span></li>
         <li class="feature backpack__age">Age: <span>${backpack.backpackAge()} days old</span></li>
         <li class="feature backpack__pockets">Number of pockets: <span>${backpack.pocketNum}</span></li>
-        <li class="feature backpack__strap" data-side="left">Left strap length: <span>${backpack.strapLength.left}</span></li>
-        <li class="feature backpack__strap" data-side="right">Right strap length: <span>${backpack.strapLength.right}</span></li>
+        <li class="feature backpack__strap" data-side="left">Left strap length: <span>${backpack.strapLength.left} inches</span></li>
+        <li class="feature backpack__strap" data-side="right">Right strap length: <span>${backpack.strapLength.right} inches</span></li>
         <li class="feature backpack__lid">Lid Status: <span>${backpack.lidOpen ? 'Open' : 'Closed'}</span></li>
     </ul>
     <button class="lid-toggle">Open lid</button>
